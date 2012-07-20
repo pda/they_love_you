@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.js">
+    <Files>
+      <File FileName="Assets/Scripts/LevelGenerator.js" Line="19" Column="18" />
+      <File FileName="Assets/Scripts/GoalController.js" Line="6" Column="37" />
+      <File FileName="Assets/Scripts/PlayerController.js" Line="23" Column="14" />
+      <File FileName="Assets/Scripts/MonsterController.js" Line="16" Column="16" />
+      <File FileName="Assets/Scripts/ExplosionController.js" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/Constants.js" Line="10" Column="1" />
+      <File FileName="Assets/Scripts/LevelController.js" Line="4" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
