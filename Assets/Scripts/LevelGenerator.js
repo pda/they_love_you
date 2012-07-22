@@ -8,13 +8,13 @@ public var Goal : GameObject;
 
 public var levels : GameObject[];
 
-private var mapObjects : Array;
+private var levelObjects : Array;
 
 private var currentLevel : int;
 private var totalLevels : int;
 
 function Start () {
-	mapObjects = new Array();
+	levelObjects = new Array();
 	currentLevel = 0;
 	totalLevels = levels.Length;
 	buildMap();
@@ -82,14 +82,8 @@ function levelParameters() {
 		GetComponent(Constants);
 }
 
-function destroyMap() {
-	while (mapObjects.length) {
-		Destroy(mapObjects.pop());
-	}
-}
-
 function restart() {
-	destroyMap();
+	destroyLevelObjects();
 	buildMap();
 }
 
@@ -106,7 +100,7 @@ function startPreviousLevel() {
 function instantiatePrefab(prefab : GameObject, position : Vector3) {
 	var instance : GameObject = Instantiate(prefab, position, Quaternion.identity);
 	instance.transform.localPosition.y = instance.transform.localScale.y * 0.5;
-	mapObjects.Add(instance);
+	addLevelObject(instance);
 	return instance;
 }
 
@@ -114,4 +108,16 @@ function instantiatePrefabScaled(prefab : GameObject, position : Vector3, size: 
 	var instance : GameObject = instantiatePrefab(prefab, position);
 	instance.transform.localScale = Vector3(size, size, size);
 	return instance;
+}
+
+// Add a GameObject to be destroyed along with the level.
+function addLevelObject(object : GameObject) {
+	levelObjects.Add(object);
+}
+
+// Destroy level objects, clearing the scene ready for a new level.
+function destroyLevelObjects() {
+	while (levelObjects.length) {
+		Destroy(levelObjects.pop());
+	}
 }
