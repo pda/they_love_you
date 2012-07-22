@@ -15,7 +15,8 @@ function Update () {
 
 function reached () {
 	loadNextLevelAt = Time.time + levelGenerator.levelParameters().nextLevelDelay;
-	this.transform.animation.Play();
+	transform.animation.Play();
+	transform.audio.Play();
 	setPlayerVictorious();
 	setMonstersBeaten();
 }
