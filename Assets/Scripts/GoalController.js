@@ -1,7 +1,5 @@
 #pragma strict
 
-public var reachedAnimation : GameObject;
-
 private var levelGenerator : LevelGenerator;
 private var loadNextLevelAt : float;
 
@@ -17,7 +15,7 @@ function Update () {
 
 function reached () {
 	loadNextLevelAt = Time.time + levelGenerator.levelParameters().nextLevelDelay;
-	Instantiate(reachedAnimation, transform.localPosition, Quaternion.identity);	
+	this.transform.animation.Play();
 	setPlayerVictorious();
 	setMonstersBeaten();
 }
