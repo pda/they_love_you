@@ -22,7 +22,7 @@ function Start () {
 function Update () {
 	lookAtFinish();
 	handleKeyboardInput();
-	forceYAxis();
+	forceYPosition();
 }
 
 function setVictorious () {
@@ -47,6 +47,6 @@ function handleKeyboardInput () {
 	}
 }
 
-function forceYAxis() {
+function forceYPosition() {
 	transform.localPosition.y = playerOriginalY;
 }
