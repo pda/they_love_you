@@ -3,7 +3,7 @@
 private var expireTime : float;
 
 function Start () {
-	expireTime = Time.time + 1.0;
+	expireTime = Time.time + 0.8;
 }
 
 function Update () {
