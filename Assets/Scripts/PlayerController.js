@@ -1,10 +1,10 @@
 #pragma strict
 
 public var Explosion : GameObject;
+public var bombCount : int;
 
 private var cameraHeightDelta : float;
 private var playerOriginalY : float;
-private var bombCount : int;
 private var isVictorious : boolean;
 
 private var levelGenerator : LevelGenerator;
