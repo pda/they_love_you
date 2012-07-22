@@ -12,7 +12,7 @@ function Update () {
 
 function OnTriggerEnter (other : Collider) {
 	if (other.CompareTag("Monster")) {
-		other.GetComponent(MonsterController).Stun();
+		other.GetComponent(MonsterController).stun();
 	}
 }
 
