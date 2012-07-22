@@ -46,13 +46,14 @@ function buildMap() {
 	var WIDTH = 16;
 	var HEIGHT = 16;
 	var SCALE = 32;
+	var HALF_SCALE = SCALE / 2;
 
 	var pixels : Array = currentMap().GetPixels();
 	
 	for (var y = 0; y < HEIGHT; y++) {
 		for (var x = 0; x < WIDTH; x++) {
 			var i = (y * WIDTH) + x;
-			var position = Vector3(x * SCALE, 0, y * SCALE);
+			var position = Vector3(x * SCALE + HALF_SCALE, 0, y * SCALE + HALF_SCALE);
 			var c : Color = pixels[i];
 			if (isWhite(c)) {
 				instantiatePrefab(WallCube, position);
