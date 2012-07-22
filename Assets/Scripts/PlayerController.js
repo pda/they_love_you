@@ -8,6 +8,7 @@ private var playerOriginalY : float;
 private var isVictorious : boolean;
 
 private var levelGenerator : LevelGenerator;
+private var goalTransform : Transform;
 
 
 function Start () {
@@ -20,7 +21,7 @@ function Start () {
 }
 
 function Update () {
-	lookAtFinish();
+	lookAtGoal();
 	handleKeyboardInput();
 	forceYPosition();
 }
@@ -29,8 +30,10 @@ function setVictorious () {
 	isVictorious = true;
 }
 
-function lookAtFinish () {
-	transform.LookAt(GameObject.FindGameObjectWithTag("Finish").transform);
+function lookAtGoal () {
+	withGoalTransform(function (gt : Transform) {
+		transform.LookAt(gt);
+	});
 }
 
 function handleKeyboardInput () {
@@ -58,4 +61,13 @@ function dropBomb() {
 
 function forceYPosition() {
 	transform.localPosition.y = playerOriginalY;
+}
+
+function withGoalTransform(callback : Function) {
+	// load and cache goalTransform
+	if (!goalTransform) {
+		var goalGameObject = GameObject.FindGameObjectWithTag("Finish");
+		if (goalGameObject) goalTransform = goalGameObject.transform;
+	}
+	if (goalTransform) callback(goalTransform);
 }
