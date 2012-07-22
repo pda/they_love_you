@@ -1,5 +1,8 @@
 #pragma strict
 
+public var stunnedMaterial : Material;
+private var originalMaterial : Material;
+
 private var target : GameObject;
 
 private var levelGenerator : LevelGenerator;
@@ -10,6 +13,7 @@ private var stunTime : float;
 
 function Start () {
 	levelGenerator = GameObject.Find("LevelGenerator").GetComponent(LevelGenerator);
+	originalMaterial = transform.renderer.material;
 	stunTime = levelGenerator.levelParameters().monsterStunTime;
 	target = GameObject.Find("Player(Clone)");
 }
@@ -33,10 +37,12 @@ function shouldChase () {
 
 function stun () {
 	stunnedSince = Time.time;
+	transform.renderer.material = stunnedMaterial;
 }
 
 function unStun () {
 	stunnedSince = 0;
+	transform.renderer.material = originalMaterial;
 }
 
 function checkStunnedTime() {
