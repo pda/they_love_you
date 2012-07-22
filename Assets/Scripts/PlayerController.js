@@ -42,9 +42,13 @@ function handleKeyboardInput () {
 	controller.Move(Vector3(h, 0, v) * levelGenerator.levelParameters().playerSpeed * Time.deltaTime);
 
 	if (Input.GetKeyDown("space") && bombCount) {
-		bombCount--;
-		Instantiate(Explosion, transform.localPosition, Quaternion.identity);
+		dropBomb();
 	}
+}
+
+function dropBomb() {
+	bombCount--;
+	Instantiate(Explosion, transform.localPosition, Quaternion.identity);
 }
 
 function forceYPosition() {
