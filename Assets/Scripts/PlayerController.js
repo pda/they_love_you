@@ -48,7 +48,12 @@ function handleKeyboardInput () {
 
 function dropBomb() {
 	bombCount--;
-	Instantiate(Explosion, transform.localPosition, Quaternion.identity);
+	var bomb : GameObject = Instantiate(
+		Explosion,
+		transform.localPosition,
+		Quaternion.identity
+	);
+	levelGenerator.addLevelObject(bomb);
 }
 
 function forceYPosition() {
