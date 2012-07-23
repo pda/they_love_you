@@ -42,6 +42,10 @@ function isBlue(c: Color) {
 	return c.r <= 0.1 && c.g <= 0.1 && c.b >= 0.9;
 }
 
+function isPurple(c: Color) {
+	return c.r >= 0.9 && c.g <= 0.1 && c.b >= 0.9;
+}
+
 function buildMap() {
 	var WIDTH = 16;
 	var HEIGHT = 16;
@@ -54,6 +58,7 @@ function buildMap() {
 		for (var x = 0; x < WIDTH; x++) {
 			var i = (y * WIDTH) + x;
 			var position = Vector3(x * SCALE + HALF_SCALE, 0, y * SCALE + HALF_SCALE);
+			var sPosition = Vector3(273, 0, 528);
 			var c : Color = pixels[i];
 			if (isWhite(c)) {
 				instantiatePrefab(WallCube, position);
@@ -66,7 +71,14 @@ function buildMap() {
 			}
 			if (isBlue(c)) {
 				instantiatePrefab(Goal, position);
-			}    
+			}   
+			
+			//Secret hackery to unlock special levels
+			if (isPurple(c)) {
+			instantiatePrefab(Goal, sPosition);
+			
+				
+			}     
 		}
 	}	
 }
