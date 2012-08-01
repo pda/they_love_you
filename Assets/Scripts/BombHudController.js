@@ -2,13 +2,15 @@
 
 private var playerController : PlayerController;
 private var baseText : String;
+private var textMesh : TextMesh;
 
 function Start () {
-	baseText = transform.guiText.text;
+	textMesh = transform.GetComponent(TextMesh);
+	baseText = textMesh.text;
 }
 
 function Update () {
-	transform.guiText.text = baseText + " (" + playerBombCount() + ")";
+	textMesh.text = baseText + " (" + playerBombCount() + ")";
 }
 
 function playerBombCount() {

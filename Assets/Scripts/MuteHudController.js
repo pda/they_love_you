@@ -4,9 +4,11 @@ public var audioListenerContainer : GameObject;
 
 private var muted : boolean;
 private var listener : AudioListener;
+private var textMesh : TextMesh;
 
 function Start () {
 	listener = audioListenerContainer.GetComponent(AudioListener);	
+	textMesh = transform.GetComponent(TextMesh);
 }
 
 function Update () {
@@ -30,5 +32,5 @@ function setMuted(mute) {
 }
 
 function setText(text : String) {
-	transform.guiText.text = text;
+	textMesh.text = text;
 }
