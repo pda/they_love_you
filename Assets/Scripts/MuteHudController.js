@@ -12,25 +12,25 @@ function Start () {
 }
 
 function Update () {
-	if (Input.GetKeyDown("m")) toggleMute();
+	if (Input.GetKeyDown("m")) ToggleMute();
 }
 
-function toggleMute() {
-	setMuted(!muted);
+function ToggleMute () {
+	SetMuted(!muted);
 }
 
-function setMuted(mute) {
+function SetMuted (mute) {
 	if (mute) {
 		listener.pause = true;
 		muted = true;
-		setText("M: Unmute");
+		SetText("M: Unmute");
 	} else {
 		listener.pause = false;
 		muted = false;
-		setText("M: Mute");
+		SetText("M: Mute");
 	}
 }
 
-function setText(text : String) {
+function SetText (text : String) {
 	textMesh.text = text;
 }

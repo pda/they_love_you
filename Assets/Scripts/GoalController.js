@@ -10,29 +10,29 @@ function Start () {
 
 function Update () {
 	if (loadNextLevelAt && Time.time >= loadNextLevelAt)
-		levelGenerator.startNextLevel();
-}
-
-function reached () {
-	loadNextLevelAt = Time.time + levelGenerator.levelParameters().nextLevelDelay;
-	transform.animation.Play();
-	transform.audio.Play();
-	setPlayerVictorious();
-	setMonstersBeaten();
-}
-
-function setPlayerVictorious () {
-	GameObject.FindGameObjectWithTag("Player").
-		GetComponent(PlayerController).
-		setVictorious();
-}
-
-function setMonstersBeaten() {
-	for (var m : GameObject in GameObject.FindGameObjectsWithTag("Monster")) {
-		m.GetComponent(MonsterController).setBeaten(true);
-	}
+		levelGenerator.StartNextLevel();
 }
 
 function OnTriggerEnter (other : Collider) {
-	if (other.CompareTag("Player")) reached();
+	if (other.CompareTag("Player")) Reached();
+}
+
+function Reached () {
+	loadNextLevelAt = Time.time + levelGenerator.LevelParameters().nextLevelDelay;
+	transform.animation.Play();
+	transform.audio.Play();
+	SetPlayerVictorious();
+	SetMonstersBeaten();
+}
+
+function SetPlayerVictorious () {
+	GameObject.FindGameObjectWithTag("Player").
+		GetComponent(PlayerController).
+		SetVictorious();
+}
+
+function SetMonstersBeaten () {
+	for (var m : GameObject in GameObject.FindGameObjectsWithTag("Monster")) {
+		m.GetComponent(MonsterController).SetBeaten(true);
+	}
 }

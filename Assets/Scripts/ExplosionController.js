@@ -7,16 +7,16 @@ function Start () {
 }
 
 function Update () {
-	checkExpiry();
+	CheckExpiry();
 }
 
 function OnTriggerEnter (other : Collider) {
 	if (other.CompareTag("Monster")) {
-		other.GetComponent(MonsterController).stun();
+		other.GetComponent(MonsterController).Stun();
 	}
 }
 
-function checkExpiry() {
+function CheckExpiry () {
 	if (Time.time >= expireTime) {
 		Destroy(this.gameObject);
 	}

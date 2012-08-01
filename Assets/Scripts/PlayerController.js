@@ -13,7 +13,7 @@ private var goalTransform : Transform;
 
 function Start () {
 	levelGenerator = GameObject.Find("LevelGenerator").GetComponent(LevelGenerator);
-	bombCount = levelGenerator.levelParameters().bombCount;
+	bombCount = levelGenerator.LevelParameters().bombCount;
 	playerOriginalY = transform.localPosition.y;
 	cameraHeightDelta =
 		Camera.main.transform.localPosition.y -
@@ -21,49 +21,49 @@ function Start () {
 }
 
 function Update () {
-	lookAtGoal();
-	handleKeyboardInput();
-	forceYPosition();
+	LookAtGoal();
+	HandleKeyboardInput();
+	ForceYPosition();
 }
 
-function setVictorious () {
+function SetVictorious () {
 	isVictorious = true;
 }
 
-function lookAtGoal () {
-	withGoalTransform(function (gt : Transform) {
+function LookAtGoal () {
+	WithGoalTransform(function (gt : Transform) {
 		transform.LookAt(gt);
 	});
 }
 
-function handleKeyboardInput () {
+function HandleKeyboardInput () {
 	if (isVictorious) return;
 
 	var h : float = Input.GetAxis("Horizontal");
 	var v : float = Input.GetAxis("Vertical");	
 	var controller : CharacterController = GetComponent(CharacterController);
-	controller.Move(Vector3(h, 0, v) * levelGenerator.levelParameters().playerSpeed * Time.deltaTime);
+	controller.Move(Vector3(h, 0, v) * levelGenerator.LevelParameters().playerSpeed * Time.deltaTime);
 
 	if (Input.GetKeyDown("space") && bombCount) {
-		dropBomb();
+		DropBomb();
 	}
 }
 
-function dropBomb() {
+function DropBomb () {
 	bombCount--;
 	var bomb : GameObject = Instantiate(
 		Explosion,
 		transform.localPosition,
 		Quaternion.identity
 	);
-	levelGenerator.addLevelObject(bomb);
+	levelGenerator.AddLevelObject(bomb);
 }
 
-function forceYPosition() {
+function ForceYPosition () {
 	transform.localPosition.y = playerOriginalY;
 }
 
-function withGoalTransform(callback : Function) {
+function WithGoalTransform (callback : Function) {
 	// load and cache goalTransform
 	if (!goalTransform) {
 		var goalGameObject = GameObject.FindGameObjectWithTag("Finish");

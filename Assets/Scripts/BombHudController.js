@@ -10,14 +10,14 @@ function Start () {
 }
 
 function Update () {
-	textMesh.text = baseText + " (" + playerBombCount() + ")";
+	textMesh.text = baseText + " (" + PlayerBombCount() + ")";
 }
 
-function playerBombCount() {
-	return findPlayerController().bombCount;
+function PlayerBombCount () {
+	return FindPlayerController().bombCount;
 }
 
-function findPlayerController() {
+function FindPlayerController () {
 	if (playerController) {
 		return playerController;
 	} else {

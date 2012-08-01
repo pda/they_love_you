@@ -14,7 +14,7 @@ private var stunTime : float;
 function Start () {
 	levelGenerator = GameObject.Find("LevelGenerator").GetComponent(LevelGenerator);
 	originalMaterial = transform.renderer.material;
-	stunTime = levelGenerator.levelParameters().monsterStunTime;
+	stunTime = levelGenerator.LevelParameters().monsterStunTime;
 	target = GameObject.Find("Player(Clone)");
 }
 
@@ -24,47 +24,44 @@ function Update () {
 	}
 	
 	if (target) {	
-		lookAtTarget();
-		if (shouldChase()) moveTowardsTarget();
+		LookAtTarget();
+		if (ShouldChase()) MoveTowardsTarget();
 	}
 	
-	checkStunnedTime();	
+	CheckStunnedTime();	
 }
 
-function shouldChase () {
+function ShouldChase () {
 	return !stunnedSince && !isBeaten;
 }
 
-function stun () {
+function Stun () {
 	stunnedSince = Time.time;
 	transform.renderer.material = stunnedMaterial;
 }
 
-function unStun () {
+function UnStun () {
 	stunnedSince = 0;
 	transform.renderer.material = originalMaterial;
 }
 
-function checkStunnedTime() {
+function CheckStunnedTime () {
 	if (Time.time - stunnedSince >= stunTime)
-		unStun();
+		UnStun();
 }
 
-function setBeaten (beaten : boolean) {
+function SetBeaten (beaten : boolean) {
 	isBeaten = beaten;
 }
 
-function lookAtTarget () {
+function LookAtTarget () {
 	transform.LookAt(target.transform);
 }
 
-function moveTowardsTarget () {
-	var controller : CharacterController = GetComponent(CharacterController);
-	
+function MoveTowardsTarget () {
 	var direction : Vector3 = (target.transform.localPosition - transform.localPosition).normalized;
-
-	controller.Move(
-		direction * levelGenerator.levelParameters().monsterSpeed * Time.deltaTime
+	GetComponent(CharacterController).Move(
+		direction * levelGenerator.LevelParameters().monsterSpeed * Time.deltaTime
 	);
 	transform.localPosition.y = transform.localScale.y / 2;
 }
