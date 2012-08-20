@@ -2,11 +2,11 @@ fileFormatVersion: 2
 guid: 96ad2db9acdf24d4db7767fcf54a1ba7
 TrueTypeFontImporter:
   serializedVersion: 2
-  fontSize: 12
+  fontSize: 128
   fontColor: {r: 1, g: 1, b: 1, a: 1}
   forceTextureCase: -2
   renderMode: 0
-  style: 1
+  style: 0
   includeFontData: 1
   use2xBehaviour: 0
   fontNames: []
