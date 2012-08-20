@@ -21,11 +21,11 @@ function ToggleMute () {
 
 function SetMuted (mute) {
 	if (mute) {
-		listener.pause = true;
+		listener.volume = 0;
 		muted = true;
 		SetText("M: Unmute");
 	} else {
-		listener.pause = false;
+		listener.volume = 100;
 		muted = false;
 		SetText("M: Mute");
 	}
