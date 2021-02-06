@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         levelGenerator = GameObject.Find("LevelGenerator").GetComponent<LevelGenerator>();
         bombCount =  (int)levelGenerator.LevelParameters().bombCount;
-        playerOriginalY = transform.localPosition.y;
+        playerOriginalY = transform.localPosition.y;      
         cameraHeightDelta = 
             Camera.main.transform.localPosition.y 
             - transform.localPosition.y;
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         LookAtGoal();
         HandleKeyboardInput();
-        ForceYPosition();
+        ForceYPosition();       
     }
 
     public void SetVictorious()
@@ -67,11 +67,7 @@ public class PlayerController : MonoBehaviour
     void DropBomb()
     {
         bombCount--;
-        GameObject bomb = Instantiate(
-            Explosion,
-            transform.localPosition,
-            Quaternion.identity
-        );
+        GameObject bomb = Instantiate(Explosion, transform.position, Quaternion.identity);
         levelGenerator.AddLevelObject(bomb);
     }
 
