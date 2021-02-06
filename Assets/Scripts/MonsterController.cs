@@ -19,7 +19,7 @@ public class MonsterController : MonoBehaviour
 
     void Start()
         {
-            levelGenerator = GameObject.Find("levelGenerator").GetComponent<LevelGenerator>();
+            levelGenerator = GameObject.Find("LevelGenerator").GetComponent<LevelGenerator>();
             originalMaterial = transform.GetComponent<Renderer>().material;
 //            stunTime = levelGenerator.LevelParameters().monsterStunTime;
             target = GameObject.Find("Player(Clone)");

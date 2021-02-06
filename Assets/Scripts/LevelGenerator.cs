@@ -164,7 +164,7 @@ public class LevelGenerator : MonoBehaviour
     }
 
 
-    void AddLevelObject(GameObject objects)
+    public void AddLevelObject(GameObject objects)
     {
         levelObjects.Add(objects);
 
