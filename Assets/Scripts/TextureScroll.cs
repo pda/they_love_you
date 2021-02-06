@@ -12,7 +12,7 @@ public class TextureScroll : MonoBehaviour {
 	void Start () {
 		
 		//scrollSpeed = 0.05f;
-		this.renderer.material.SetTextureScale("_MainTex", tex_scale);
+		this.GetComponent<Renderer>().material.SetTextureScale("_MainTex", tex_scale);
 	}
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class TextureScroll : MonoBehaviour {
 		
 		float offset = Time.time * scrollSpeed;
 		
-        renderer.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+        GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
 	
 	}
 }

@@ -1,5 +1,5 @@
-#pragma strict
-#pragma downcast
+//#pragma strict
+//#pragma downcast
 
 public var WallCube : GameObject;
 public var Monster : GameObject;
