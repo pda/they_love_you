@@ -131,7 +131,7 @@ public class LevelGenerator : MonoBehaviour
         BuildMap();
     }
 
-    private void StartNextLevel()
+    public void StartNextLevel()
     {
         currentLevel = (currentLevel + 1) % totalLevels;
         Restart();

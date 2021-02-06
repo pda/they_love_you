@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         ForceYPosition();
     }
 
-    private void SetVictorious()
+    public void SetVictorious()
     {
         isVictorious = true;
     }
