@@ -13,13 +13,16 @@ public class PlayerController : MonoBehaviour
 
     private LevelGenerator levelGenerator;
     private Transform goalTransform;
+    private Vector3 moveVector;
+    private CharacterController controller = null;
 
 
     void Start()
     {
         levelGenerator = GameObject.Find("LevelGenerator").GetComponent<LevelGenerator>();
         bombCount =  (int)levelGenerator.LevelParameters().bombCount;
-        playerOriginalY = transform.localPosition.y;      
+        playerOriginalY = transform.localPosition.y;
+        controller = GetComponent<CharacterController>();
         cameraHeightDelta = 
             Camera.main.transform.localPosition.y 
             - transform.localPosition.y;
@@ -32,9 +35,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        LookAtGoal();
         HandleKeyboardInput();
-        ForceYPosition();       
+    }
+
+    private void FixedUpdate()
+    {
+        LookAtGoal();
+        controller.Move(moveVector * Time.deltaTime);
+        ForceYPosition();
     }
 
     public void SetVictorious()
@@ -53,10 +61,8 @@ public class PlayerController : MonoBehaviour
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        CharacterController controller = GetComponent<CharacterController>();
-        controller.Move(new Vector3(h, 0, v) 
-            * levelGenerator.LevelParameters().playerSpeed 
-            * Time.deltaTime);
+        moveVector = new Vector3(h, 0, v)
+            * levelGenerator.LevelParameters().playerSpeed;
 
         if (Input.GetKeyDown("space") && bombCount>0)
         {

@@ -20,12 +20,12 @@ public class MonsterController : MonoBehaviour
     void Start()
         {
             levelGenerator = GameObject.Find("LevelGenerator").GetComponent<LevelGenerator>();
-            originalMaterial = transform.GetComponent<Renderer>().material;
+            originalMaterial = transform.GetComponent<Renderer>().sharedMaterial;
             stunTime = levelGenerator.LevelParameters().monsterStunTime;
             target = GameObject.Find("Player(Clone)");
         }
 
-    void Update()
+    void FixedUpdate()
         {
             if (!target)
             {
@@ -50,14 +50,14 @@ public class MonsterController : MonoBehaviour
         {
             isStunned = true;
             stunnedSince = Time.time;
-            transform.GetComponent<Renderer>().material = stunnedMaterial;
+            transform.GetComponent<Renderer>().sharedMaterial = stunnedMaterial;
         }
 
         public void UnStun()
         {
             stunnedSince = 0;
             isStunned = false;
-            transform.GetComponent<Renderer>().material = originalMaterial;
+            transform.GetComponent<Renderer>().sharedMaterial = originalMaterial;
         }
 
         public void CheckStunnedTime()
@@ -82,7 +82,7 @@ public class MonsterController : MonoBehaviour
             GetComponent<CharacterController>().Move(
                 direction * levelGenerator.LevelParameters().monsterSpeed * Time.deltaTime
             );
-            transform.localPosition.Set(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
+            //transform.localPosition.Set(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
         }
 
 }
